@@ -92,33 +92,37 @@
   .dept-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:14px;}
   @media(max-width:1050px){.dept-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:600px){.dept-grid{grid-template-columns:1fr;}}
-  .dept-card{border:1px solid var(--line); border-radius:14px; background:var(--panel); overflow:hidden; transition:border-color .2s;}
-  .dept-card.open{border-color:var(--line-2);}
-  .dept-head{padding:20px 18px; cursor:pointer; display:flex; flex-direction:column; gap:10px;}
+  .dept-card{border:1px solid var(--line-2); border-radius:14px; background:var(--panel); overflow:hidden; transition:border-color .2s;}
+  .dept-head{padding:20px 18px; display:flex; flex-direction:column; gap:10px;}
   .dept-icon{width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:16px;}
   .dept-name{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14.5px;}
   .dept-lead{font-size:11.5px; color:var(--muted-2); font-family:'JetBrains Mono',monospace;}
   .dept-count{font-size:11px; color:var(--muted); margin-top:2px;}
-  .dept-body{max-height:0; overflow:hidden; transition:max-height .35s ease; border-top:1px solid var(--line);}
-  .dept-card.open .dept-body{max-height:640px;}
+  .dept-live{display:flex; align-items:center; gap:6px; margin-top:9px; font-size:10.5px; color:var(--good); font-family:'JetBrains Mono',monospace; letter-spacing:0.03em;}
+  .dept-live .ld{width:6px; height:6px; border-radius:50%; background:var(--good); animation:pulse 1.4s infinite; flex-shrink:0;}
+  .dept-live .lc{color:var(--muted); margin-left:auto; transition:color .3s;}
+  .dept-live .lc.flash{color:var(--violet-bright);}
+  .dept-body{border-top:1px solid var(--line);}
   .mini-agent{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:11px 14px; border-bottom:1px solid var(--line); font-size:12px;}
   .mini-agent:last-child{border-bottom:none;}
   .mini-agent .ma-name{color:var(--ash); font-weight:500;}
   .mini-agent .ma-task{color:var(--muted-2); font-size:10.8px; margin-top:2px;}
   .ma-del{background:none; border:1px solid var(--line-2); color:var(--muted); width:22px; height:22px; border-radius:6px; font-size:13px; line-height:1; flex-shrink:0; transition:.2s;}
   .ma-del:hover{border-color:var(--danger); color:var(--danger);}
-  .add-agent-row{padding:12px 14px; display:flex; gap:6px;}
-  .add-agent-row input{flex:1; background:var(--void-2); border:1px solid var(--line-2); border-radius:7px; padding:8px 10px; color:var(--ash); font-size:12px; outline:none;}
+  .add-agent-row{padding:12px 14px; display:flex; flex-direction:column; gap:8px;}
+  .add-agent-row input{width:100%; background:var(--void-2); border:1px solid var(--line-2); border-radius:7px; padding:8px 10px; color:var(--ash); font-size:12px; outline:none;}
   .add-agent-row input:focus{border-color:var(--violet);}
-  .add-agent-row button{background:rgba(139,92,246,0.16); border:1px solid var(--violet); color:var(--violet-bright); border-radius:7px; padding:0 12px; font-size:12px; font-weight:600;}
+  .add-agent-row button{width:100%; background:rgba(139,92,246,0.16); border:1px solid var(--violet); color:var(--violet-bright); border-radius:7px; padding:8px 12px; font-size:12px; font-weight:600;}
 
   /* ---- ORG CHART ---- */
   .org-shell{border:1px solid var(--line); border-radius:18px; padding:8px; background:linear-gradient(160deg,rgba(139,92,246,0.08),rgba(193,63,214,0.04));}
   .org-panel{border-radius:12px; background:var(--void-2); padding:32px; overflow-x:auto;}
   .org-toprow{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:30px;}
   .org-label{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:0.03em;}
-  .autonomy-toggle{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.03); border:1px solid var(--line-2); padding:9px 15px; border-radius:100px; cursor:pointer; user-select:none;}
+  .autonomy-toggle{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.03); border:1px solid var(--line-2); padding:9px 15px; border-radius:100px; cursor:pointer; user-select:none; transition:.25s;}
+  .autonomy-toggle.on{background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.4);}
   .autonomy-toggle span{font-size:12px; color:var(--muted); font-weight:500;}
+  .autonomy-toggle.on span{color:var(--ash);}
   .switch{width:36px; height:20px; border-radius:100px; background:var(--muted-2); position:relative; transition:.25s; flex-shrink:0;}
   .switch::after{content:''; position:absolute; width:14px; height:14px; border-radius:50%; background:#fff; top:3px; left:3px; transition:.25s;}
   .switch.on{background:linear-gradient(120deg,var(--violet),var(--magenta));}
@@ -283,7 +287,7 @@
     <div class="section-head" data-reveal>
       <span class="kicker">01 — How the company is staffed</span>
       <h2>Five departments. Every agent has a job description.</h2>
-      <p>Not one flat pool of bots — an actual structure, the way a real company is organized. Open any department to see its agents, add a new one, or remove one you don't need.</p>
+      <p>Not one flat pool of bots — an actual structure, the way a real company is organized. Every department is shown fully below: see its agents, add a new one, or remove one you don't need.</p>
     </div>
     <div class="dept-grid" id="deptGrid"></div>
   </div>
@@ -309,28 +313,28 @@
   <div class="wrap">
     <div class="section-head" data-reveal>
       <span class="kicker">02 — Who reports to whom</span>
-      <h2>One org chart. Flip a switch to hand it full autonomy.</h2>
-      <p>Every department lead reports to you. Turn on full autonomy and a manager agent starts assigning work itself — you keep a fixed set of controls no matter what.</p>
+      <h2>One org chart. Autonomous by default — you're always in control of how.</h2>
+      <p>Every department lead reports to you. The company runs itself out of the box; you decide where to add human checkpoints, not whether the whole thing works.</p>
     </div>
     <div class="org-shell" data-reveal>
       <div class="org-panel">
         <div class="org-toprow">
           <div class="org-label">YOUR COMPANY — LIVE ORG CHART</div>
-          <div class="autonomy-toggle" id="autoToggle" onclick="toggleAutonomy()">
-            <div class="switch" id="autoSwitch"></div>
-            <span id="autoLabel">Fully autonomous mode: off</span>
+          <div class="autonomy-toggle on" id="autoToggle" onclick="toggleAutonomy()">
+            <div class="switch on" id="autoSwitch"></div>
+            <span id="autoLabel">Fully autonomous mode: on (default)</span>
           </div>
         </div>
         <div class="org-tree">
           <div class="org-row"><div class="node human"><div class="n-role">Founder</div><div class="n-name">You</div><div class="n-status"><span class="d"></span>Full authority</div></div></div>
           <div class="connector"></div>
-          <div class="org-row" id="autoManagerRow" style="display:none;">
+          <div class="org-row" id="autoManagerRow" style="display:flex;">
             <div class="node dept-lead"><div class="n-role">AI · Orchestrator</div><div class="n-name">Manager Agent</div><div class="n-status"><span class="d"></span>Assigning tasks</div></div>
           </div>
-          <div class="connector" id="autoConnector" style="display:none;"></div>
+          <div class="connector" id="autoConnector" style="display:block;"></div>
           <div class="org-row" id="deptLeadRow"></div>
         </div>
-        <div class="org-footnote" id="orgFootnote">Off: you (or your human manager) assign work to department leads directly. Every hand-off is still logged either way.</div>
+        <div class="org-footnote" id="orgFootnote">Default: the Manager Agent assigns work to department leads on its own, based on your goals. You can switch this off any time and assign work yourself — either way, you keep the controls below and every hand-off stays logged.</div>
         <div class="cap-list">
           <div class="cap-pill">Pause any agent instantly</div>
           <div class="cap-pill">Set a spend cap per department</div>
@@ -472,28 +476,28 @@
 <script>
 /* ============ DATA ============ */
 const DEPARTMENTS = [
-  {id:'dev', name:'Development Team', icon:'&lt;/&gt;', color:'#8B5CF6', lead:'Lead Dev Agent', agents:[
+  {id:'dev', name:'Development Team', icon:'&lt;/&gt;', color:'#8B5CF6', lead:'Lead Dev Agent', tasksToday:47, agents:[
     {name:'Frontend Agent', task:'Builds & maintains UI components'},
     {name:'Backend Agent', task:'APIs, database schema, business logic'},
     {name:'DevOps Agent', task:'Deploys, monitors uptime, handles rollbacks'},
     {name:'Bugfix Agent', task:'Triages reports and ships patches'}
   ]},
-  {id:'mgmt', name:'Management Team', icon:'&#9776;', color:'#C13FD6', lead:'Ops Manager Agent', agents:[
+  {id:'mgmt', name:'Management Team', icon:'&#9776;', color:'#C13FD6', lead:'Ops Manager Agent', tasksToday:19, agents:[
     {name:'Roadmap Agent', task:'Prioritizes what gets built next'},
     {name:'Resource Agent', task:'Balances workload across agents'},
     {name:'Reporting Agent', task:'Sends you a weekly plain-English summary'}
   ]},
-  {id:'qa', name:'Testing Team', icon:'&#10003;', color:'#7ED9A8', lead:'QA Lead Agent', agents:[
+  {id:'qa', name:'Testing Team', icon:'&#10003;', color:'#7ED9A8', lead:'QA Lead Agent', tasksToday:63, agents:[
     {name:'Unit Test Agent', task:'Writes and runs tests on every change'},
     {name:'Regression Agent', task:'Checks nothing old broke'},
     {name:'Security Scan Agent', task:'Scans new code for vulnerabilities'}
   ]},
-  {id:'sales', name:'Sales Team', icon:'&#8599;', color:'#F0B860', lead:'Sales Lead Agent', agents:[
+  {id:'sales', name:'Sales Team', icon:'&#8599;', color:'#F0B860', lead:'Sales Lead Agent', tasksToday:31, agents:[
     {name:'Outreach Agent', task:'Finds and contacts prospective customers'},
     {name:'Lead Qualification Agent', task:'Scores and routes inbound interest'},
     {name:'Follow-up Agent', task:'Keeps warm leads from going cold'}
   ]},
-  {id:'hr', name:'HR Team', icon:'&#9733;', color:'#B794F6', lead:'HR Lead Agent', agents:[
+  {id:'hr', name:'HR Team', icon:'&#9733;', color:'#B794F6', lead:'HR Lead Agent', tasksToday:8, agents:[
     {name:'Onboarding Agent', task:'Provisions new agents & sets memory scope'},
     {name:'Performance Agent', task:'Scores agent output, flags underperformers'},
     {name:'Offboarding Agent', task:'Revokes access & archives memory on removal'}
@@ -506,7 +510,7 @@ const TRIGGER_DEFAULTS = [
   {when:'A security scan finds a critical issue', agent:'Security Scan Agent (QA)', action:'block the deploy & alert you', condition:'always'}
 ];
 
-let autonomyOn = false;
+let autonomyOn = true;
 let triggers = JSON.parse(JSON.stringify(TRIGGER_DEFAULTS));
 
 /* ============ DEPARTMENTS ============ */
@@ -514,12 +518,13 @@ function renderDepartments(){
   const grid = document.getElementById('deptGrid');
   grid.innerHTML = DEPARTMENTS.map(d=>`
     <div class="dept-card" id="dept-${d.id}">
-      <div class="dept-head" onclick="toggleDept('${d.id}')">
+      <div class="dept-head">
         <div class="dept-icon" style="background:${d.color}22; color:${d.color};">${d.icon}</div>
         <div>
           <div class="dept-name">${d.name}</div>
           <div class="dept-lead">${d.lead}</div>
           <div class="dept-count" id="count-${d.id}">${d.agents.length} agents</div>
+          <div class="dept-live"><span class="ld"></span>Live in production<span class="lc" id="live-${d.id}">${d.tasksToday} tasks today</span></div>
         </div>
       </div>
       <div class="dept-body" id="body-${d.id}">
@@ -540,9 +545,6 @@ function renderAgents(deptId){
       <button class="ma-del" onclick="deleteAgent('${deptId}',${i})" title="Remove agent">&times;</button>
     </div>`).join('');
   document.getElementById('count-'+deptId).textContent = dept.agents.length+' agents';
-}
-function toggleDept(id){
-  document.getElementById('dept-'+id).classList.toggle('open');
 }
 function deleteAgent(deptId, idx){
   const dept = DEPARTMENTS.find(d=>d.id===deptId);
@@ -572,13 +574,14 @@ function renderOrgChart(){
 }
 function toggleAutonomy(){
   autonomyOn = !autonomyOn;
+  document.getElementById('autoToggle').classList.toggle('on', autonomyOn);
   document.getElementById('autoSwitch').classList.toggle('on', autonomyOn);
-  document.getElementById('autoLabel').textContent = 'Fully autonomous mode: ' + (autonomyOn ? 'on' : 'off');
+  document.getElementById('autoLabel').textContent = autonomyOn ? 'Fully autonomous mode: on (default)' : 'Fully autonomous mode: off';
   document.getElementById('autoManagerRow').style.display = autonomyOn ? 'flex' : 'none';
   document.getElementById('autoConnector').style.display = autonomyOn ? 'block' : 'none';
   document.getElementById('orgFootnote').textContent = autonomyOn
-    ? 'On: the Manager Agent assigns work to department leads on its own, based on your goals. You still keep the four controls below at all times.'
-    : 'Off: you (or your human manager) assign work to department leads directly. Every hand-off is still logged either way.';
+    ? 'Default: the Manager Agent assigns work to department leads on its own, based on your goals. You can switch this off any time and assign work yourself — either way, you keep the controls below and every hand-off stays logged.'
+    : 'Off: you (or your human manager) assign work to department leads directly. Every hand-off is still logged either way — flip it back on whenever you want the Manager Agent driving again.';
 }
 
 /* ============ TRIGGERS ============ */
@@ -822,6 +825,19 @@ function escapeHtml(s){ return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;'
 function escapeAttr(s){ return s.replace(/"/g,'&quot;'); }
 
 /* ============ BOOT ============ */
+function tickLiveDepartments(){
+  const d = DEPARTMENTS[Math.floor(Math.random()*DEPARTMENTS.length)];
+  d.tasksToday += 1;
+  const el = document.getElementById('live-'+d.id);
+  if(!el) return;
+  el.textContent = d.tasksToday+' tasks today';
+  el.classList.add('flash');
+  setTimeout(()=>el.classList.remove('flash'), 500);
+}
+function startLiveDepartments(){
+  setInterval(tickLiveDepartments, 3200);
+}
+
 renderDepartments();
 renderOrgChart();
 renderTriggers();
@@ -832,6 +848,7 @@ refreshKgOptions();
 renderKG();
 renderCoordination();
 startCoordination();
+startLiveDepartments();
 
 const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.1});
 document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
